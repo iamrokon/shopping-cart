@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PremiumCart Frontend
 
-## Getting Started
+A high-performance, premium shopping cart frontend built with Next.js, Redux Toolkit, and Firebase.
 
-First, run the development server:
+## Technology Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
+- **API Communication**: [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- **Authentication**: [Firebase Authentication](https://firebase.google.com/docs/auth) (Google Sign-in)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: Vanilla CSS with Modern Best Practices
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Optimistic UI Updates
+All cart interactions (Add, Increment, Decrement, Remove) happen instantly on the frontend. The Redux state is updated immediately to provide a snappy, zero-latency experience for the user.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Batch Synchronization
+Instead of calling the API on every click, the frontend queues changes and synchronizes with the backend using a **Batch API Request** after a 2-second period of inactivity (debounce). This significantly reduces server load and prevents rate limiting.
 
-## Learn More
+### 3. Persistent Cart (No LocalStorage)
+The application does NOT use `localStorage` for cart persistence. Instead:
+- On application load, the backend API is queried for the current user's cart.
+- The Redux state is hydrated with these server values.
+- This ensures the cart is truly persistent across devices and sessions without the security risks/limitations of local storage.
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Firebase Google Sign-in
+Seamless authentication using Google. The Firebase ID token is exchanged for a secure Laravel Sanctum token for all subsequent API requests.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Setup Instructions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-## Deploy on Vercel
+2.  **Environment Variables**:
+    Create a `.env.local` file in the `frontend` directory:
+    ```env
+    NEXT_PUBLIC_API_URL=http://localhost:8000/api
+    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_id
+    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Run Development Server**:
+    ```bash
+    npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Architecture
+
+- `src/lib/redux`: Store configuration and API slice definitions.
+- `src/hooks/useCartSync.ts`: Custom hook managing the debounced synchronization logic.
+- `src/components/AuthInit.tsx`: Handles session persistence and initial data hydration.
+- `src/app/globals.css`: Premium design system implemented in Vanilla CSS.
