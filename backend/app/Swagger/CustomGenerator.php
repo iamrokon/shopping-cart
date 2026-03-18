@@ -27,10 +27,21 @@ class CustomGenerator extends L5Generator
 
         $version = $this->scanOptions['open_api_spec_version'] ?? L5Generator::OPEN_API_DEFAULT_SPEC_VERSION;
         $generator->setVersion($version);
-
         $this->setProcessors($generator);
         $this->setAnalyser($generator);
 
         return $generator;
+    }
+
+    /**
+     * Override to include both Attributes and DocBlock annotations.
+     * swagger-php 6.0 defaults to Attributes ONLY if not specified.
+     */
+    protected function setAnalyser(OpenApiGenerator $generator): void
+    {
+        $generator->setAnalyser(new \OpenApi\Analysers\ReflectionAnalyser([
+            new \OpenApi\Analysers\AttributeAnnotationFactory(),
+            new \OpenApi\Analysers\DocBlockAnnotationFactory(),
+        ]));
     }
 }
