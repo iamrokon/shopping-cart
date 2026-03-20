@@ -27,8 +27,15 @@ export default function Navbar({ onCartClick }: { onCartClick: () => void }) {
                 user: response.data.user,
                 token: response.data.token,
             }));
-        } catch (error) {
+        } catch (error: any) {
             console.error('Login failed:', error);
+            if (error.code === 'auth/configuration-not-found') {
+                alert('Firebase Error: Auth configuration not found. Please ensure Google Sign-in is enabled in your Firebase Console and your API Key is correct.');
+            } else if (error.code === 'auth/popup-blocked') {
+                alert('Sign-in popup was blocked by your browser. Please allow popups for this site.');
+            } else {
+                alert(`Login failed: ${error.message || 'Unknown error'}`);
+            }
         }
     };
 
@@ -45,12 +52,12 @@ export default function Navbar({ onCartClick }: { onCartClick: () => void }) {
     const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 h-20 flex items-center px-6 md:px-12 justify-between">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 h-16 flex items-center px-6 md:px-12 justify-between">
             <div className="flex items-center gap-2">
                 <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-200">
                     P
                 </div>
-                <span className="font-outfit font-bold text-2xl bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                <span className="font-outfit font-black text-xl tracking-tighter bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
                     PremiumCart
                 </span>
             </div>

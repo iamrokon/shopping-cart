@@ -13,8 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Stateless API middleware
-        $middleware->statefulApi();
+        //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // Return JSON for API validation errors

@@ -1,0 +1,15 @@
+﻿▲ Next.js 16.1.7 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://172.17.64.1:3001
+- Environments: .env.local
+
+✓ Starting...
+✓ Finished writing to filesystem cache in 24.1s
+✓ Ready in 108.8s
+○ Compiling / ...
+✓ Finished writing to filesystem cache in 49s
+ GET / 200 in 3.3min (compile: 3.2min, render: 5.0s)
+ GET / 200 in 2.2min (compile: 2.2min, render: 768ms)
+ GET / 200 in 2.7s (compile: 375ms, render: 2.3s)
+✓ Finished writing to filesystem cache in 83s
+✓ Finished filesystem cache database compaction in 2.3min

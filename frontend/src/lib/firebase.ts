@@ -11,6 +11,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+if (firebaseConfig.apiKey === 'your-api-key' || !firebaseConfig.apiKey) {
+  console.warn('Firebase Warning: NEXT_PUBLIC_FIREBASE_API_KEY is not set or is using a placeholder. Google Sign-in will not work.');
+}
+
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
