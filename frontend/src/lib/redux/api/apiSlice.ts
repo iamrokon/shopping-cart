@@ -17,10 +17,24 @@ export const apiSlice = createApi({
     endpoints: (builder) => ({
         getProducts: builder.query({
             query: () => '/products',
+            transformResponse: (response: any) => {
+                // Handle nested Laravel pagination data if present
+                if (response?.data?.data) {
+                    return { ...response, data: response.data.data };
+                }
+                return response;
+            },
             providesTags: ['Product'],
         }),
         getCart: builder.query({
             query: () => '/cart',
+            transformResponse: (response: any) => {
+                // Handle nested Laravel pagination data if present
+                if (response?.data?.data) {
+                    return { ...response, data: response.data.data };
+                }
+                return response;
+            },
             providesTags: ['Cart'],
         }),
         batchSyncCart: builder.mutation({

@@ -23,7 +23,7 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Hero Section */}
-        <section className="relative mb-24 rounded-[3rem] bg-gray-900 overflow-hidden min-h-[400px] flex items-center px-12 text-white">
+        <section id="featured" className="relative mb-24 rounded-[3rem] bg-gray-900 overflow-hidden min-h-[400px] flex items-center px-12 text-white">
           <div className="absolute inset-0 z-0">
             <div className="absolute top-0 right-0 w-1/2 h-full bg-indigo-600/20 blur-[120px] rounded-full" />
             <div className="absolute bottom-0 left-0 w-1/3 h-full bg-purple-600/10 blur-[100px] rounded-full" />
@@ -68,7 +68,7 @@ export default function Home() {
         </section>
 
         {/* Products Grid */}
-        <section>
+        <section id="shop">
           <div className="flex items-end justify-between mb-12">
             <div>
               <h2 className="text-3xl font-outfit font-black text-gray-900 mb-2">Editor's Choice</h2>
@@ -115,24 +115,24 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-20">
-            <div>
-              <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-widest text-xs">Navigation</h4>
-              <ul className="space-y-4 text-gray-500 text-sm font-medium">
-                <li className="hover:text-indigo-600 transition-colors cursor-pointer">Shop</li>
-                <li className="hover:text-indigo-600 transition-colors cursor-pointer">Categories</li>
-                <li className="hover:text-indigo-600 transition-colors cursor-pointer">Featured</li>
-              </ul>
+            <div className="grid grid-cols-2 gap-20">
+              <div>
+                <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-widest text-xs">Navigation</h4>
+                <ul className="space-y-4 text-gray-500 text-sm font-medium">
+                  <li><a href="#shop" className="hover:text-indigo-600 transition-colors cursor-pointer">Shop</a></li>
+                  <li><a href="#" className="hover:text-indigo-600 transition-colors cursor-pointer">Categories</a></li>
+                  <li><a href="#featured" className="hover:text-indigo-600 transition-colors cursor-pointer">Featured</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-widest text-xs">Account</h4>
+                <ul className="space-y-4 text-gray-500 text-sm font-medium">
+                  <li className="hover:text-indigo-600 transition-colors cursor-pointer">Profile</li>
+                  <li className="hover:text-indigo-600 transition-colors cursor-pointer">My Orders</li>
+                  <li className="hover:text-indigo-600 transition-colors cursor-pointer">Wishlist</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-widest text-xs">Account</h4>
-              <ul className="space-y-4 text-gray-500 text-sm font-medium">
-                <li className="hover:text-indigo-600 transition-colors cursor-pointer">Profile</li>
-                <li className="hover:text-indigo-600 transition-colors cursor-pointer">My Orders</li>
-                <li className="hover:text-indigo-600 transition-colors cursor-pointer">Wishlist</li>
-              </ul>
-            </div>
-          </div>
         </div>
         <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-400 text-xs">© 2024 PremiumCart. Technical Assessment Project.</p>
