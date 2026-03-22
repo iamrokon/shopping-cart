@@ -33,6 +33,7 @@ export default function AuthInit({ children }: { children: React.ReactNode }) {
                     // If we have a firebase user, exchange for a fresh API token if needed
                     // Or just use the saved token if it exists
                     const idToken = await firebaseUser.getIdToken();
+                    console.log("SWAGGER DEBUG TOKEN:", idToken);
                     const response = await loginWithFirebase(idToken).unwrap();
 
                     dispatch(setCredentials({
