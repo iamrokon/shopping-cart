@@ -45,8 +45,8 @@ php artisan key:generate
 ```
 **Configure `.env`**:
 - `DB_DATABASE=shopping_cart`
-- `FIREBASE_PROJECT_ID=your-project-id`
-- `FIREBASE_API_KEY=your-api-key`
+- `FIREBASE_PROJECT_ID=shopping-cart-3d2d8`
+- `FIREBASE_API_KEY=AIzaSyBOttRpfzvZDUhICl2f9OzxSrtoMa_XBmI`
 - `FRONTEND_URL=http://localhost:3000`
 
 **Initialize Database:**
@@ -63,9 +63,9 @@ npm install
 ```
 **Configure `.env.local`**:
 - `NEXT_PUBLIC_API_URL=http://localhost:8000/api`
-- `NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key`
-- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com`
-- `NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id`
+- `NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBOttRpfzvZDUhICl2f9OzxSrtoMa_XBmI`
+- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=shopping-cart-3d2d8.firebaseapp.com`
+- `NEXT_PUBLIC_FIREBASE_PROJECT_ID=shopping-cart-3d2d8`
 
 **Run Development Server:**
 ```bash
